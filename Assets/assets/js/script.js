@@ -16,6 +16,7 @@ $(function () {
 
     saveButtonEl.on('click', function() {
       location.saveDate()
+      
     });
     //
     // TODO: Add code to apply the past, present, or future class to each time
