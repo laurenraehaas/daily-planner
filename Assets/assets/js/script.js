@@ -1,33 +1,75 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function () {
-    // TODO: Add a listener for click events on the save button. This code should
-    // use the id in the containing time-block as a key to save the user input in
-    // local storage. HINT: What does `this` reference in the click listener
-    // function? How can DOM traversal be used to get the "hour-x" id of the
-    // time-block containing the button that was clicked? How might the id be
-    // useful when saving the description in local storage?
-    var saveButtonEl = $('#savebtn');
+let update = () => {
+  let date = moment(new Date())
+  $("#currentDay").text(date.format("dddd, MMMM Do YYYY, h:mm:ss a"))
+}
 
-    function saveDate() {
-      saveDate.save()
+$(document).ready(function() {
+  update()
+  setInterval(update, 1000)
+});
+
+//create array that houses all of the work hour ID's
+var workHoursIdArr = ["#nine", "#ten", "#eleven", "#twelve", "#one", "#two", "#three", "#four", "#five"];
+//create array that houses all of the work hour classes
+var workHoursClassArr = [".nine", ".ten", ".eleven", ".twelve", ".one", ".two", ".three", ".four", ".five"];
+//create array to store saved event id'z
+var savedEvents = 
+["nine",
+ "ten",
+  "eleven",
+   "twelve",
+    "one",
+     "two",
+      "three",
+       "four",
+        "five"];
+
+let createMoments = () => {
+  for(let i = 0; i < workHoursIdArr.length; i++) {
+    let hoursId = workHoursIdArr[i]
+    let hoursClass = workHoursClassArr[i]
+
+    if($("hoursId")) {
+      let time = $(workHoursClass.text())
+
+      if(time.length === 4) {
+        let hourNUMA = $(hoursClass).text().charAt(0)
+        let hourNUMB = $(hoursClass).text().charAt(1)
+        let hour = hourNUMA + hourNUMB
+      } else {
+        let hour = $(hoursClass).text().charAt(0)
+      }
+      let aOrPIndex = time.length - 2
+      let aOrP = time.charAt(aOrPIndex)
+      let blockTimeHour;
+      if(hour + aOrP + "M" === "12PM") {
+        let blockTimeHour = parseInt(hour)
+      } else if (aOrP === "A") {
+        let blockTimeHour = parseInt(hour)
+      } else {
+        blockTimeHour = (parseInt(hour)) + 12
+      } 
+
+      checkTime(blockTimeHour, hoursId)
     }
+  }
+}
 
-    saveButtonEl.on('click', function() {
-      location.saveDate()
-      
-    });
-    //
-    // TODO: Add code to apply the past, present, or future class to each time
-    // block by comparing the id to the current hour. HINTS: How can the id
-    // attribute of each time-block be used to conditionally add or remove the
-    // past, present, and future classes? How can Day.js be used to get the
-    // current hour in 24-hour time?
-    //
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this?
-    //
-    // TODO: Add code to display the current date in the header of the page.
-  });
+let checkTime = (hour, id => {
+  let parsedHour = parseInt(moment(new Date()).format("H:mm:ss a"))
+
+  if(parsedHour === hour) {
+    $(id).removeClass("future")
+    $(id).addClass("present")
+  } else if (parsedHour > hour) {
+    $(id).removeClass("present")
+    $(id).addClass("past")
+  } else if (parsedHour < hour) {
+    $(id).removeClass("present")
+    $(id).addClass("future")
+  }
+})
+
+
+
+createMoments()
