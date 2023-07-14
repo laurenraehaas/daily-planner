@@ -12,16 +12,14 @@ body {
     padding: 10px;
   }
   
-  .description {
-    white-space: pre-wrap;
-  }
-  
   .time-block {
-    border-radius: 15px;
+    text-align: left;
   }
   
   .row {
-    border-top: 1px solid white;
+    height: 80px;
+    border-top: 1px solid black;
+    white-space: pre-wrap;
   }
   
   .hour {
@@ -32,17 +30,20 @@ body {
   
   .past {
     background-color: #d3d3d3;
-    color: white;
+    color: black;
+    padding: 20px;
   }
   
   .present {
     background-color: #ff6961;
-    color: white;
+    color: black;
+    padding: 20px;
   }
   
   .future {
     background-color: #77dd77;
-    color: white;
+    color: black;
+    padding: 20px;
   }
   
   .saveBtn {
@@ -56,4 +57,9 @@ body {
   .saveBtn i:hover {
     font-size: 20px;
     transition: all 0.3s ease-in-out;
+  }
+
+  .jumbotron {
+    text-align: center;
+    border-bottom: 5px solid black;
   }
