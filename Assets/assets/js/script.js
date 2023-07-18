@@ -105,7 +105,7 @@ $(".row").on("click", ".time-block", function() {
   let divId = $(this)
     .attr("id")
 
-  let textInput = $("<text-area>")
+  let textInput = $("<textarea>")
     .addClass("form-control")
     .addClass("col-8")
     .addClass("col-lg-10")
@@ -131,7 +131,7 @@ $(".saveBtn").on("click", function() {
       .trim()
 
     localStorage.setItem("event: " + divId, JSON.stringify(text))
-    createMoments
+    (createMoments)
   } else {
     $("textarea").trigger("blur")
 
@@ -165,6 +165,6 @@ let loadSaves = function() {
 createMoments();
 loadSaves()
 
-//setInterval(function () {
-//  createMoments()
-//}, 1000)
+setInterval(function () {
+  createMoments()
+}, 1000)
