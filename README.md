@@ -25,3 +25,7 @@ THEN the text for that event is saved in local storage
 WHEN I refresh the page
 THEN the saved events persist
 ```
+
+https://laurenraehaas.github.io/daily-planner/
+
+![UofM homework 5](https://github.com/laurenraehaas/daily-planner/assets/123714943/2cacd8d9-1af1-4ee5-a404-5d24aefad51d)
